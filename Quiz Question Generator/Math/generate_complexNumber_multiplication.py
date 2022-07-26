@@ -33,7 +33,7 @@ def generate_question(complexity,number_of_options):
             options.append(complex(str(i)+'j')+answer)
     rand.shuffle(options)
     options[rand.randint(0,number_of_options-1)]=answer
-    display.print_Ques_Opt_Ans(terms,options,number_of_options,answer)
+    display.print_Ques_Opt_Ans(terms,options,number_of_options,answer,'*')
 
 
 if __name__=='__main__':
