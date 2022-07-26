@@ -21,7 +21,7 @@ def generate_question(complexity,number_of_options):
 
     if product not in options[:-1:]:
         options[number_of_options-1]=product
-    display.print_Ques_Opt_Ans(terms,options,number_of_options,product)
+    display.print_Ques_Opt_Ans(terms,options,number_of_options,product,'*')
 
 if __name__=='__main__':
     generate_question(4,4)
