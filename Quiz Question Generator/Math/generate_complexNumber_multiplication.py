@@ -1,7 +1,11 @@
+'''
+Author : Bhathrinaathan M B
+'''
+
 import random as rand   #To generate random numbers
 import numpy as np      #To calculate the product of complex numbers
-import print_Question_Options as display
-
+import print_Question_Options as display    #To display the question,options and ansers
+import generate_Latex_Format as latex      #To format the output in latex format
 
 #Calculates the number of terms to generate for the given complexity
 def calculate_number_of_terms(complexity):
@@ -11,12 +15,12 @@ def calculate_number_of_terms(complexity):
 
 #Genrates a complex number using randint function
 def generate_complex_number(complexity):
-
+    cmp=1+2j
     boundary={1:(1,10),2:(11,25),3:(20,30),4:(25,40),5:(30,40)}
     real=rand.randint(boundary[complexity][0],boundary[complexity][1])
     imag=rand.randint(boundary[complexity][0],boundary[complexity][1])
     operation=rand.randint(1,4)
-    operator='+' if operation<=3 else '-'
+    operator='+' if operation<3 else '-'
     return complex(str(real)+operator+str(imag)+'j')
 
 #Genrates a question with demanded number of options
@@ -34,6 +38,7 @@ def generate_question(complexity,number_of_options):
     rand.shuffle(options)
     options[rand.randint(0,number_of_options-1)]=answer
     display.print_Ques_Opt_Ans(terms,options,number_of_options,answer,'*')
+    latex.format_complex_number_with_operation(terms,options,number_of_options,answer,'*')
 
 
 if __name__=='__main__':
