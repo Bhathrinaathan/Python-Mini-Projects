@@ -38,8 +38,7 @@ def generate_question(complexity,number_of_options):
     rand.shuffle(options)
     options[rand.randint(0,number_of_options-1)]=answer
     display.print_Ques_Opt_Ans(terms,options,number_of_options,answer,'*')
-    latex.format_complex_number_with_operation(terms,options,number_of_options,answer,'*')
-
-
+    ques_latex,options_latex,answer_latex=latex.format_question_complex_number(terms,options[:number_of_options],answer,'*')
+    print(ques_latex,"\n",options_latex,"\n",answer_latex)
 if __name__=='__main__':
     generate_question(3,4)
