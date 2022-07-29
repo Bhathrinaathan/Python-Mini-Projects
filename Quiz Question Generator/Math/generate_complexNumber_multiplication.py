@@ -1,12 +1,16 @@
-'''
-Author : Bhathrinaathan M B
-'''
 
 import random as rand   #To generate random numbers
 import numpy as np      #To calculate the product of complex numbers
 import print_Question_Options as display    #To display the question,options and ansers
 import generate_Latex_Format as latex      #To format the output in latex format
+import JSON_Formatters
+import json
 
+author_Name='Bhathrinaathan M B'
+guid_Id=''
+sys_Id='Hexint09'
+reveiwer_Name=''
+reveiwer_Id=''
 #Calculates the number of terms to generate for the given complexity
 def calculate_number_of_terms(complexity):
     if complexity<=3:
@@ -15,7 +19,6 @@ def calculate_number_of_terms(complexity):
 
 #Genrates a complex number using randint function
 def generate_complex_number(complexity):
-    cmp=1+2j
     boundary={1:(1,10),2:(11,25),3:(20,30),4:(25,40),5:(30,40)}
     real=rand.randint(boundary[complexity][0],boundary[complexity][1])
     imag=rand.randint(boundary[complexity][0],boundary[complexity][1])
@@ -39,6 +42,9 @@ def generate_question(complexity,number_of_options):
     options[rand.randint(0,number_of_options-1)]=answer
     display.print_Ques_Opt_Ans(terms,options,number_of_options,answer,'*')
     ques_latex,options_latex,answer_latex=latex.format_question_complex_number(terms,options[:number_of_options],answer,'*')
-    print(ques_latex,"\n",options_latex,"\n",answer_latex)
+    data=JSON_Formatters.format_json_file(ques_latex,options_latex,answer_latex,author_Name,guid_Id,sys_Id,reveiwer_Name,reveiwer_Id)
+    json.dumps(data)
+
+
 if __name__=='__main__':
     generate_question(3,4)
